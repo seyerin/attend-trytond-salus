@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<tryton>
+    <data>
+        <record model="ir.ui.view" id="absensi_record_view_form">
+            <field name="model">absensi.record</field>
+            <field name="type">form</field>
+            <field name="name">absensi_ess_form</field>
+        </record>
+
+        <record model="ir.action.act_window" id="act_absensi_record_form">
+            <field name="name">Absensi ESS</field>
+            <field name="res_model">absensi.record</field>
+        </record>
+        <record model="ir.action.act_window.view"
+            id="act_absensi_record_form_view1">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="absensi_record_view_form"/>
+            <field name="act_window" ref="act_absensi_record_form"/>
+        </record>
+        <menuitem
+            parent="menu_main_attendance"
+            action="act_absensi_record_form"
+            sequence="20"
+            id="menu_absensi_record"
+            icon="tryton-form"/>
+
+        <record model="ir.model.access" id="access_absensi_record">
+            <field name="model" search="[('model', '=', 'absensi.record')]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_absensi_record_attendance_admin">
+            <field name="model" search="[('model', '=', 'absensi.record')]"/>
+            <field name="group" ref="group_attendance_admin"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+    </data>
+</tryton>
